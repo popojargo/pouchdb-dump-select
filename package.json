@@ -1,0 +1,35 @@
+{
+  "name": "pouchdb-dump-select",
+  "version": "1.0.0",
+  "description": "PouchDB module that let  you dump records to a file based you views result.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/popojargo/pouchdb-dump-select.git"
+  },
+  "keywords": [
+    "pouchdb",
+    "dump",
+    "json",
+    "select",
+    "views"
+  ],
+  "author": "Alexis Côté",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/popojargo/pouchdb-dump-select/issues"
+  },
+  "homepage": "https://github.com/popojargo/pouchdb-dump-select#readme",
+  "dependencies": {
+    "pouchdb": "^6.0.6",
+    "url": "^0.11.0",
+    "vargs": "^0.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.0"
+  }
+}
