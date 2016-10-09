@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "pouchdb-dump-select": "./bin.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/popojargo/pouchdb-dump-select.git"
@@ -24,9 +27,13 @@
   },
   "homepage": "https://github.com/popojargo/pouchdb-dump-select#readme",
   "dependencies": {
+    "clone": "^2.0.0",
+    "deep-equal": "^1.0.1",
+    "merge": "^1.2.0",
     "pouchdb": "^6.0.6",
     "url": "^0.11.0",
-    "vargs": "^0.1.0"
+    "vargs": "^0.1.0",
+    "yargs": "^6.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
