@@ -11,7 +11,8 @@ Once installed, you can use this command to access the CLI : `pouchdb-ds` which 
 
 Full parameters bellow :
 
->Options:
+```
+Options:
   -h, --help         Help message                                      [boolean]
   -v, --view         The view name including the design doc prefix
   --vk, --viewkey    The view key on wich the documents will be indexed.
@@ -22,7 +23,7 @@ Full parameters bellow :
   -u, --username     username for the CouchDB database (if it's protected)
   -p, --password     password for the CouchDB database (if it's protected)
   -s, --split        split into multiple files, for every n docs
->
+
 Examples:
   C:\Users\alexi\AppData\Roaming\npm\node_  Dump from the "mydb" CouchDB to
   modules\pouchdb-dump-select\bin.js        dump.txt
@@ -38,6 +39,7 @@ Examples:
   http://example.com/mydb -u myUsername -p
   myPassword > dump.txt
 
+```
 
 
 
