@@ -1,6 +1,6 @@
 {
   "name": "pouchdb-dump-select",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "PouchDB module that let  you dump records to a file based you views result.",
   "main": "index.js",
   "scripts": {
