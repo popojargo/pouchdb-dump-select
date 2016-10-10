@@ -14,31 +14,21 @@ Full parameters bellow :
 
 ```
 Options:
-  -h, --help         Help message                                      [boolean]
+  -h, --help         Help message  [boolean]
   -v, --view         The view name including the design doc prefix
   --vk, --viewkey    The view key on wich the documents will be indexed.
   -k, --key          The key(s) to fetch
-  --dd, --designdoc  Determine if a design doc will be created if querying
-                     views.
+  --dd, --designdoc  Determine if a design doc will be created if querying views.
   -o, --output-file  output file (else will dump to stdout)
   -u, --username     username for the CouchDB database (if it's protected)
   -p, --password     password for the CouchDB database (if it's protected)
   -s, --split        split into multiple files, for every n docs
 
 Examples:
-  C:\Users\alexi\AppData\Roaming\npm\node_  Dump from the "mydb" CouchDB to
-  modules\pouchdb-dump-select\bin.js        dump.txt
-  http://localhost:5984/mydb > dump.txt
-  C:\Users\alexi\AppData\Roaming\npm\node_  Dump from the "mydb" LevelDB-based
-  modules\pouchdb-dump-select\bin.js        PouchDB to dump.txt
-  /path/to/mydb > dump.txt
-  C:\Users\alexi\AppData\Roaming\npm\node_  Dump to the specified file instead
-  modules\pouchdb-dump-select\bin.js        of stdout
-  /path/to/mydb -o dump.txt
-  C:\Users\alexi\AppData\Roaming\npm\node_  Specify a CouchDB username and
-  modules\pouchdb-dump-select\bin.js        password if it's protected
-  http://example.com/mydb -u myUsername -p
-  myPassword > dump.txt
+  C:\Users\alexi\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js http://localhost:5984/mydb > dump.txt                           Dump from the "mydb" CouchDB to dump.txt
+  C:\Users\alexi\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js /path/to/mydb > dump.txt                                        Dump from the "mydb" LevelDB-based PouchDB to dump.txt
+  C:\Users\alexi\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js /path/to/mydb -o dump.txt                                       Dump to the specified file instead of stdout
+  C:\Users\alexi\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js http://example.com/mydb -u myUsername -p myPassword > dump.txt  Specify a CouchDB username and password if it's protected
 
 ```
 
