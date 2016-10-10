@@ -2,7 +2,8 @@
 Inspired from [pouchdb-dump-cli](https://www.npmjs.com/package/pouchdb-dump-cli). This package extends the capabilities of pouchdb-dump-cli to query specific data and dump it into a file. You can access it via the CLI or directly using the library. *Note that importing this package into your code only gives you an easy access to query your PouchDB instance.*
 
 #Installation
-To install this package, simply run this command : `npm i pouchdb-dump-select`. If you plan to use the CLI, I suggest that you install it globally like this : `npm i  -g pouchdb-dump-select`.
+To install this package, simply run this command : `npm i pouchdb-dump-select`. 
+If you plan to use the CLI, I suggest that you install it globally like this : `npm i  -g pouchdb-dump-select`.
 
 
 #CLI
@@ -49,7 +50,7 @@ The actual library is a constructor with 3 public methods.
 
 You can access the full documentation [here](https://popojargo.github.io/pouchdb-dump-select/docs/index.html).
 
-So first of all, you  need to require the actual library :
+So first of all, you  need to require the library :
 ```
 var PDS = require("pouchdb-dump-select");
 ```
@@ -59,7 +60,7 @@ var PDS = require("pouchdb-dump-select");
 
 
 #Note
-This package is **not stable yet**, so don't you it in a production environment. CLI parameters and functions might changes. I will try to write a changelog if it happens.
+This package is **not stable yet**, so don't put it in a production environment. CLI parameters and functions might change. I will try to write a changelog if it happens.
 
 
 
