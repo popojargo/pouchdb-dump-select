@@ -25,10 +25,10 @@ Options:
   -s, --split        split into multiple files, for every n docs
 
 Examples:
-  C:\Users\alexi\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js http://localhost:5984/mydb > dump.txt                           Dump from the "mydb" CouchDB to dump.txt
-  C:\Users\alexi\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js /path/to/mydb > dump.txt                                        Dump from the "mydb" LevelDB-based PouchDB to dump.txt
-  C:\Users\alexi\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js /path/to/mydb -o dump.txt                                       Dump to the specified file instead of stdout
-  C:\Users\alexi\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js http://example.com/mydb -u myUsername -p myPassword > dump.txt  Specify a CouchDB username and password if it's protected
+  C:\Users\user\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js http://localhost:5984/mydb > dump.txt                           Dump from the "mydb" CouchDB to dump.txt
+  C:\Users\user\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js /path/to/mydb > dump.txt                                        Dump from the "mydb" LevelDB-based PouchDB to dump.txt
+  C:\Users\user\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js /path/to/mydb -o dump.txt                                       Dump to the specified file instead of stdout
+  C:\Users\user\AppData\Roaming\npm\node_modules\pouchdb-dump-select\bin.js http://example.com/mydb -u myUsername -p myPassword > dump.txt  Specify a CouchDB username and password if it's protected
 
 ```
 
