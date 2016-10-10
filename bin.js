@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+
+'use strict';
 /* global process */
 
 /* 
@@ -23,33 +26,34 @@ var yargs = require('yargs')
   .describe('h', 'Help message')
   .alias('v', 'view')
   .describe('v', 'The view name including the design doc prefix')
+  .alias('k', 'key')
+  .array('k')
+  .describe('k', 'The key(s) to fetch')
   .alias('vk', 'viewkey')
   .describe('vk', 'The view key on wich the documents will be indexed.')
-  .alias('k', 'key')
-  .describe('k', 'The key(s) to fetch')
-  .alias('dd', 'designdoc')
+  .alias('d', 'designdoc')
+  .boolean('d')
   .describe('dd', 'Determine if a design doc will be created if querying views.')
   .alias('o', 'output-file')
-  .describe('o', 'output file (else will dump to stdout)')
+  .describe('o', 'Output file (else will dump to stdout)')
   .alias('u', 'username')
-  .describe('u', 'username for the CouchDB database (if it\'s protected)')
+  .describe('u', 'Username for the CouchDB database (if it\'s protected)')
   .alias('p', 'password')
-  .describe('p', 'password for the CouchDB database (if it\'s protected)')
-  .alias('s', 'split')
-  .describe('s', 'split into multiple files, for every n docs')
+  .describe('p', 'Password for the CouchDB database (if it\'s protected)')
   .example('$0 http://localhost:5984/mydb > dump.txt',
     'Dump from the "mydb" CouchDB to dump.txt')
-  .example('$0 /path/to/mydb > dump.txt',
-    'Dump from the "mydb" LevelDB-based PouchDB to dump.txt')
-  .example('$0 /path/to/mydb -o dump.txt',
+//  .example('$0 /path/to/mydb > dump.txt',
+//    'Dump from the "mydb" LevelDB-based PouchDB to dump.txt')
+  .example('$0 http://localhost:5984/mydb -o dump.json',
     'Dump to the specified file instead of stdout')
   .example('$0 http://example.com/mydb -u myUsername -p myPassword > dump.txt',
     'Specify a CouchDB username and password if it\'s protected');
 var argv = yargs.argv;
 if (argv.h) {
   yargs.showHelp();
-  return process.exit(0);
+  return process.exit(1);
 }
+
 
 var dbName = argv._[0];
 if (!dbName) {
@@ -61,7 +65,6 @@ if (!dbName) {
 //Modules loading
 var pdsConstruct = require("./index.js");
 var fs = require('fs');
-var ProgressBar = require('progress');
 //Parameter
 var outfile = argv.o;
 var password = argv.p;
@@ -70,12 +73,6 @@ var useDesignDoc = argv.dd;
 var viewKey = argv.vk;
 var view = argv.v;
 var keys = argv.k;
-try {
-  keys = JSON.parse(keys);
-} catch (e) {
-  console.error("Invalid JSON format for keys");
-  return process.exit(1);
-}
 
 //Instance
 /**
@@ -139,6 +136,7 @@ function writeContent(content) {
   outstream.on('finish', function() {
     console.info("File has been written.");
   });
-  outstream.write(content);
-  outstream.end();
+  outstream.write(JSON.stringify(content));
+  if (outfile)
+    outstream.end();
 }

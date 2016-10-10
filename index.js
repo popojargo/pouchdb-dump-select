@@ -22,6 +22,7 @@ var PouchDB = require("pouchdb");
 var Args = require("vargs").Constructor;
 var URL = require("url");
 var Clone = require("clone");
+var Promise = require("lie");
 var Equal = require("deep-equal");
 var Merge = require("merge");
 /**
@@ -32,16 +33,14 @@ var Merge = require("merge");
  * @param {String} password [] The password of the remote database if required.
  */
 var DumpSelect = function (url, username, password) {
-	try {
-		url = this._buildUrl(url, username, password);
-	} catch (e) {
-		//Throw error
-	}
+
+	url = this._buildUrl(url, username, password);
 	//Init
 
 	/**
 	 * @public
 	 */
+
 	this.db = new PouchDB(url);
 };
 
@@ -55,6 +54,9 @@ var DumpSelect = function (url, username, password) {
 DumpSelect.prototype.getAll = function (ids, queryOpts) {
 	var options = {include_docs: true};
 	var dis = this;
+	//Keys convert to string
+	if ((ids !== null && ids !== undefined) && !Array.isArray(ids))
+		ids = ids + "";
 	if (ids) {
 		if (!Array.isArray(ids))
 			options.key = ids;
@@ -81,6 +83,10 @@ DumpSelect.prototype.getAll = function (ids, queryOpts) {
 DumpSelect.prototype.getByView = function (view, keys, queryOptions) {
 	var options = {include_docs: true};
 	var dis = this;
+
+	//Keys convert to string
+	if ((keys !== null && keys !== undefined) && !Array.isArray(keys))
+		keys = keys + "";
 	if (keys)
 		options['key' + (Array.isArray(keys) ? 's' : '')] = keys;
 
@@ -124,6 +130,9 @@ DumpSelect.prototype.getByKeyValue = function (key, values, queryOptions, useDes
 		}
 	}
 	var defaultOpts = {include_docs: true};
+	//Keys convert to string
+	if ((values !== null && values !== undefined) && !Array.isArray(values))
+		values = values + "";
 	if (values)
 		defaultOpts["key" + (Array.isArray(values) ? 's' : '')] = values;
 
@@ -247,13 +256,16 @@ DumpSelect.prototype._getDesignDoc = function (name) {
  * @returns {Promise}	Returns a promise with the first parameter.
  */
 DumpSelect.prototype._getViewParameter = function (key, useDesignDoc) {
-	var mapFn = "function(doc){if(doc." + key + ")emit(doc." + key + ");}";
-	if (useDesignDoc)//We try to fetch a _design/view string
+		var mapFn = "function(doc){if(doc." + key + ")emit(doc." + key + ");}";
+	if (useDesignDoc){//We try to fetch a _design/view string
 		return this._getOrCreateView('by_' + key, mapFn);
-	else //We use local filtering with a javascript function
+	}
+	else {//We use local filtering with a javascript function
+		
 		return new Promise(function (resolve, reject) {
-			resolve(mapFn);
+			resolve({map:mapFn});
 		});
+	}
 };
 
 /**
@@ -269,7 +281,7 @@ DumpSelect.prototype._buildUrl = function (url, username, password) {
 		throw new TypeError("Both username and password must be defined. You can't provide only one of them.");
 	if (username) {
 		var parsedUrl = URL.parse(url);
-		if (parsedUrl.protocol)
+		if (!parsedUrl.protocol)
 			throw new TypeError("Username/Password are only for remote databases");
 		url = parsedUrl.protocol + '//' + encodeURIComponent(username) + ':' + encodeURIComponent(password) + '@' + parsedUrl.host + parsedUrl.path;
 	}
